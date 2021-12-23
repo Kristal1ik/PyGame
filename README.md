@@ -1,3 +1,2 @@
 # PyGame
-2
-#aqaaaaaaaaaaaaaaa
+Лучшая игра в вашей жизнииииииииии
