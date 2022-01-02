@@ -1,15 +1,19 @@
 import pygame
 from pygame import display
+from TABLE import Card_table
 
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode((1000, 1000))
+    screen = pygame.display.set_mode((1600, 800))
     display.set_caption("Монстрики/Монстры")
     running = True
     fps = 60
     tile = 50
     clock = pygame.time.Clock()
-    bg = pygame.image.load('bg.png')
+    
+    # ОБНОВЛЕН ПУТЬ
+    # изменено название изображения, тк при написании \b может быть ошибка
+    bg = pygame.image.load('game_imgs\Bg.png')
 
 
     # pers = pygame.image.load()
@@ -17,7 +21,9 @@ if __name__ == '__main__':
     class World:
         def __init__(self, data):
             self.tilelst = []
-            dirt = pygame.image.load('dirt.jpg')
+            # ОБНОВЛЕН ПУТЬ
+            # изменено название изображения, тк при написании \d может быть ошибка
+            dirt = pygame.image.load('game_imgs\Dirt.jpg')
             n_row = 0
             for i in data:
                 n = 0
@@ -60,10 +66,16 @@ if __name__ == '__main__':
         ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.']
     ]
     world = World(data)
+    
+    # ------------------- ДОБАВЛЕНО -------------------
+    cards = Card_table(screen)  
 
     while running:
         screen.blit(bg, (0, 0))
         world.draw()
+
+        # ------------------- ДОБАВЛЕНО -------------------
+        cards.draw()
         # screen.fill((255, 255, 255))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
