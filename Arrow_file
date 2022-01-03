@@ -3,6 +3,7 @@ import pygame
 
 class Arrow(pygame.sprite.Sprite):
     image = pygame.image.load('game_imgs\Arrow.png')
+    pushed_arrow_im = pygame.image.load('game_imgs\Pushed_arrow.png')
 
     def __init__(self, group):
         super().__init__(group)
@@ -11,6 +12,7 @@ class Arrow(pygame.sprite.Sprite):
         self.rect.x = 20
         self.rect.y = 614
         self.arrow_poz = 1
+        self.card_quantity = 3
 
     def update(self, *args):
         if args and args[0][pygame.K_LEFT]:
@@ -22,4 +24,15 @@ class Arrow(pygame.sprite.Sprite):
             if self.arrow_poz < 6:
                 self.rect.left += 188
                 self.arrow_poz += 1
+                print(self.rect.x)
                 # print(self.arrow_poz)
+
+        if args and args[0][pygame.K_RETURN]:
+            if self.arrow_poz <= self.card_quantity:
+                print('Card activated')
+                self.card_quantity -= 1
+            else:
+                if self.card_quantity > 0:
+                    print('This slot is blank')
+                else:
+                    print("You'v not any cards")
