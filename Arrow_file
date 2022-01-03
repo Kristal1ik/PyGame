@@ -66,8 +66,11 @@ class Arrow(pygame.sprite.Sprite):
 
             if args and args[0][pygame.K_RSHIFT]:
                 if self.caught_food:  # если корм был выбран, монстрика можно покормить выбранным кормом
-                    print('Monster fed')
-                    self.caught_food = False
+                    if self.monster_arrow_poz <= self.monster_card_quantity:
+                        print('Monster fed')
+                        self.caught_food = False
+                    else:
+                        print("This monster slot is blank. You can't feed an emptiness")
                 else:
                     print("Food wasn't chosen")
 
