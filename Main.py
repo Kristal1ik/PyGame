@@ -15,9 +15,7 @@ if __name__ == '__main__':
 
     all_sprites = pygame.sprite.Group()
 
-
     # pers = pygame.image.load()
-
 
     world = World(data, tile, screen)
     cards = Card_table(screen)
@@ -27,10 +25,7 @@ if __name__ == '__main__':
         screen.blit(bg, (0, 0))
         world.draw()
 
-
         cards.draw()
-
-        #cards.arrow()
         # screen.fill((255, 255, 255))
 
         for event in pygame.event.get():
