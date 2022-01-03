@@ -2,7 +2,7 @@ import pygame
 from pygame import display
 from Table_file import Card_table
 from World_file import World, data, bg
-#from Arrow_file import Arrow
+from Arrow_file import Arrow
 
 if __name__ == '__main__':
     pygame.init()
@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
     world = World(data, tile, screen)
     cards = Card_table(screen)
+    arrow = Arrow(all_sprites)
 
     while running:
         screen.blit(bg, (0, 0))
@@ -28,10 +29,10 @@ if __name__ == '__main__':
 
 
         cards.draw()
-        
+
         #cards.arrow()
         # screen.fill((255, 255, 255))
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -40,7 +41,9 @@ if __name__ == '__main__':
             if key:
                 all_sprites.update(key)
 
-        pygame.display.update()
+        all_sprites.draw(screen)
+        all_sprites.update()
+        pygame.display.flip()
     clock.tick(fps)
 
     pygame.quit()
