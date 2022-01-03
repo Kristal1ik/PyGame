@@ -1,0 +1,25 @@
+import pygame
+
+
+class Arrow(pygame.sprite.Sprite):
+    image = pygame.image.load('game_imgs\Arrow.png')
+
+    def __init__(self, group):
+        super().__init__(group)
+        self.image = Arrow.image
+        self.rect = self.image.get_rect()
+        self.rect.x = 20
+        self.rect.y = 614
+        self.arrow_poz = 1
+
+    def update(self, *args):
+        if args and args[0][pygame.K_LEFT]:
+            if self.arrow_poz > 1:
+                self.rect.left -= 188
+                self.arrow_poz -= 1
+                # print(self.arrow_poz)
+        if args and args[0][pygame.K_RIGHT]:
+            if self.arrow_poz < 6:
+                self.rect.left += 188
+                self.arrow_poz += 1
+                # print(self.arrow_poz)
