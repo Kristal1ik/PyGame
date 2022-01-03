@@ -1,6 +1,6 @@
 import pygame
 from pygame import display
-from TABLE import Card_table
+from Table_file import Card_table
 from World_file import World, data, bg
 #from Arrow_file import Arrow
 
