@@ -16,6 +16,8 @@ class Pers(pygame.sprite.Sprite):
         self.rect.y = 0
 
     def update(self, *args):
+        #Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow. 
+        #Теперь управление как в большинстве игр - WASD
         if args and args[0][pygame.K_s]:
             self.rect.top += 10
         if args and args[0][pygame.K_w]:
