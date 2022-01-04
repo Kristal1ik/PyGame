@@ -3,10 +3,12 @@ from pygame import display
 from Table_file import Card_table
 from World_file import World, data, bg
 from Arrow_file import Arrow
+from pers import Pers
+
 
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode((1600, 800))
+    screen = pygame.display.set_mode((1300, 800))
     display.set_caption("Монстрики/Монстры")
     running = True
     fps = 60
@@ -20,6 +22,7 @@ if __name__ == '__main__':
     world = World(data, tile, screen)
     cards = Card_table(screen)
     arrow = Arrow(all_sprites)
+    pers = Pers(all_sprites)
 
     while running:
         screen.blit(bg, (0, 0))
