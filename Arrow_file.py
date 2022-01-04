@@ -1,16 +1,16 @@
 import pygame
-import random
-
 
 class Arrow(pygame.sprite.Sprite):
+    image = pygame.image.load('game_imgs\Table.png')
 
-    def __init__(self, group):
+    def __init__(self, group, screen):
         super().__init__(group)
+        self.screen = screen
         self.monster_arrow_image = pygame.image.load('game_imgs\Monster_arrow.png')
         self.food_arrow_image = pygame.image.load('game_imgs\Food_arrow.png')
 
         self.rect = self.monster_arrow_image.get_rect()
-        self.rect.x = 20
+        self.rect.x = 19
         self.rect.y = 614
 
         self.monster_arrow_poz = 1  # позиция курсора при выборе монстрика
@@ -43,14 +43,14 @@ class Arrow(pygame.sprite.Sprite):
                 if self.monster_arrow_poz < self.max_monsters_quantity:
                     self.rect.left += self.monster_move_length
                     self.monster_arrow_poz += 1
-                    print(self.rect.x)
+                    # print(self.rect.x)
                     # print(self.arrow_poz)
 
             if args and args[0][pygame.K_RCTRL]:
                 self.image = self.food_arrow_image
 
                 self.rect.x = 1170
-                self.rect.y = 614
+                self.rect.y = 615
                 self.arrow_poz = "Food"
                 self.food_arrow_poz = 1
 
@@ -81,13 +81,13 @@ class Arrow(pygame.sprite.Sprite):
                 if self.food_arrow_poz == 2 or self.food_arrow_poz == 4:
                     self.rect.left -= self.food_move_length_left
                     self.food_arrow_poz -= 1
-                    print(self.food_arrow_poz)
+                    # print(self.food_arrow_poz)
 
             if args and args[0][pygame.K_RIGHT]:
                 if self.food_arrow_poz == 1 or self.food_arrow_poz == 3:
                     self.rect.left += self.food_move_length_left
                     self.food_arrow_poz += 1
-                    print(self.food_arrow_poz)
+                    # print(self.food_arrow_poz)
 
             if args and args[0][pygame.K_UP]:
                 if self.food_arrow_poz == 3 or self.food_arrow_poz == 4:
@@ -111,7 +111,7 @@ class Arrow(pygame.sprite.Sprite):
                 if self.food_arrow_poz <= self.food_card_quantity:
                     print('Food was chosen')  # вывод сообщения)
                     self.food_card_quantity -= 1
-                    self.caught_food = True # это значение будет заменено на конкретное, взятое из класса CardInnit
+                    self.caught_food = True  # это значение будет заменено на конкретное, взятое из класса CardInnit
                     # исходя из этого значения будет приниматься решение о варианте взаимодействия с картой
                     # (выбор/ замена (при уже выбранной карте))
                 else:
