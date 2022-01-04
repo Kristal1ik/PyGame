@@ -1,4 +1,7 @@
 import pygame
+from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster, \
+    FourthMonster, FifthMonster, SixMonster
+
 
 class Arrow(pygame.sprite.Sprite):
     image = pygame.image.load('game_imgs\Table.png')
@@ -57,6 +60,7 @@ class Arrow(pygame.sprite.Sprite):
             if args and args[0][pygame.K_RETURN]:
                 if self.monster_arrow_poz <= self.monster_card_quantity:
                     print('Monster card activated')  # вывод сообщения
+
                     self.monster_card_quantity -= 1
                 else:
                     if self.monster_card_quantity > 0:
