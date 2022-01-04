@@ -16,13 +16,13 @@ class Pers(pygame.sprite.Sprite):
         self.rect.y = 0
 
     def update(self, *args):
-        if args and args[0][pygame.K_DOWN]:
+        if args and args[0][pygame.K_s]:
             self.rect.top += 10
-        if args and args[0][pygame.K_UP]:
+        if args and args[0][pygame.K_w]:
             self.rect.top -= 10
-        if args and args[0][pygame.K_RIGHT]:
+        if args and args[0][pygame.K_d]:
             self.rect.right += 10
-        if args and args[0][pygame.K_LEFT]:
+        if args and args[0][pygame.K_a]:
             self.rect.right -= 10
 
 
