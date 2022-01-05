@@ -1,6 +1,6 @@
 import pygame
 
-bg = pygame.image.load('game_imgs\Back_ground.png')
+back_ground = pygame.image.load('game_imgs\Back_ground.png')
 
 
 class World:
