@@ -9,8 +9,8 @@ class Pers(pygame.sprite.Sprite):
         super().__init__(group)
         self.image = Pers.image
         self.rect = self.image.get_rect()
-        self.rect.x = 0
-        self.rect.y = 0
+        self.rect.x = 20
+        self.rect.y = 450
 
     def update(self, *args):
         #Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
@@ -20,6 +20,6 @@ class Pers(pygame.sprite.Sprite):
         if args and args[0][pygame.K_w]:
             self.rect.top -= 10
         if args and args[0][pygame.K_d]:
-            self.rect.right += 10
+            self.rect.right += 4
         if args and args[0][pygame.K_a]:
-            self.rect.right -= 10
+            self.rect.right -= 4
