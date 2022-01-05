@@ -1,7 +1,7 @@
 import pygame
 from pygame import display
 from Table_file import Card_table
-from World_file import World, data, bg
+from World_file import World, data, back_ground
 from Arrow_file import Arrow
 from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster, \
     FourthMonster, FifthMonster, SixMonster
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     running = True
 
     while running:
-        screen.blit(bg, (0, 0))
+        screen.blit(back_ground, (0, 0))
         world.draw()
         table.draw()
 
