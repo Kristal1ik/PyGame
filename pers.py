@@ -1,12 +1,9 @@
-import os
-import random
-
 import pygame
 
 
 class Pers(pygame.sprite.Sprite):
-    image = pygame.image.load('game_imgs\pers.jpg')
-    image = pygame.transform.scale(image, (100, 100))
+    image = pygame.image.load('game_imgs\Charecter.png')
+    # у персонажа изначальный размер = 100 * 60 пикселей
 
     def __init__(self, group):
         super().__init__(group)
@@ -16,7 +13,7 @@ class Pers(pygame.sprite.Sprite):
         self.rect.y = 0
 
     def update(self, *args):
-        #Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow. 
+        #Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
         #Теперь управление как в большинстве игр - WASD
         if args and args[0][pygame.K_s]:
             self.rect.top += 10
@@ -26,5 +23,3 @@ class Pers(pygame.sprite.Sprite):
             self.rect.right += 10
         if args and args[0][pygame.K_a]:
             self.rect.right -= 10
-
-
