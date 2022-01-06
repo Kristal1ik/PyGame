@@ -64,7 +64,7 @@ if __name__ == '__main__':
                 running = False
             key = pygame.key.get_pressed()
             if key:
-                all_sprites.update(key)
+                all_sprites.update()
 
         all_sprites.draw(screen)
         all_sprites.update()
