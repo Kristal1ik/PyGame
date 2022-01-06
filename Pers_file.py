@@ -3,7 +3,7 @@ import pygame
 
 class Pers(pygame.sprite.Sprite):
     image = pygame.image.load('game_imgs\Charecter.png')
-    image = pygame.transform.scale(image, (50, 90))
+
     # у персонажа изначальный размер = 100 * 60 пикселей
 
     def __init__(self, group):
@@ -12,20 +12,37 @@ class Pers(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 20
         self.rect.y = 450
+        self.vy = 0
 
     def update(self):
-        #Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
-        #Теперь управление как в большинстве игр - WASD
+        # Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
+        # Теперь управление как в большинстве игр - WASD
 
-        #Упращено
+        # Упращено
         dx = 0
         dy = 0
+        f = False  # Проверка на то, нажат ли пробел
         args = pygame.key.get_pressed()
         if args[pygame.K_s]:
-            self.rect.top += 5
+            dy += 5
+        if args[pygame.K_SPACE] and not f:
+            self.vy = -15
+            f = True
         if args[pygame.K_SPACE]:
-            self.rect.top -= 5
+            f = False
         if args[pygame.K_d]:
-            self.rect.right += 5
+            dx += 5
         if args[pygame.K_a]:
-            self.rect.right -= 5
+            dx -= 5
+        # Гравитация
+        self.vy += 1
+        if self.vy > 10:
+            self.vy = 10
+        dy += self.vy
+
+        self.rect.x += dx
+        self.rect.y += dy
+
+        if self.rect.bottom > 560:
+            self.rect.bottom = 560
+            dy = 0
