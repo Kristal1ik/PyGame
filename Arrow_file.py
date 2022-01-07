@@ -35,21 +35,22 @@ class Arrow(pygame.sprite.Sprite):
 
         self.image = self.monster_arrow_image
 
-    def update(self, *args):
+    def update(self):
+        args = pygame.key.get_pressed()
         if self.arrow_poz == "Monst":  # если курсор в зоне карт с монстрами
-            if args and args[0][pygame.K_LEFT]:
+            if args and args[pygame.K_LEFT]:
                 if self.monster_arrow_poz > 1:
                     self.rect.left -= self.monster_move_length
                     self.monster_arrow_poz -= 1
                     # print(self.arrow_poz)
-            if args and args[0][pygame.K_RIGHT]:
+            if args and args[pygame.K_RIGHT]:
                 if self.monster_arrow_poz < self.max_monsters_quantity:
                     self.rect.left += self.monster_move_length
                     self.monster_arrow_poz += 1
                     # print(self.rect.x)
                     # print(self.arrow_poz)
 
-            if args and args[0][pygame.K_RCTRL]:
+            if args and args[pygame.K_RCTRL]:
                 self.image = self.food_arrow_image
 
                 self.rect.x = 1170
@@ -57,7 +58,7 @@ class Arrow(pygame.sprite.Sprite):
                 self.arrow_poz = "Food"
                 self.food_arrow_poz = 1
 
-            if args and args[0][pygame.K_RETURN]:
+            if args and args[pygame.K_RETURN]:
                 if self.monster_arrow_poz <= self.monster_card_quantity:
                     print('Monster card activated')  # вывод сообщения
 
@@ -68,7 +69,7 @@ class Arrow(pygame.sprite.Sprite):
                     else:
                         print("You'v not any monsters")  # вывод сообщения
 
-            if args and args[0][pygame.K_RSHIFT]:
+            if args and args[pygame.K_RSHIFT]:
                 if self.caught_food:  # если корм был выбран, монстрика можно покормить выбранным кормом
                     if self.monster_arrow_poz <= self.monster_card_quantity:
                         print('Monster fed')
@@ -81,29 +82,29 @@ class Arrow(pygame.sprite.Sprite):
 
         # --------------------------FOOD-------------------------
         elif self.arrow_poz == "Food":  # если курсор в зоне карт с кормом
-            if args and args[0][pygame.K_LEFT]:
+            if args and args[pygame.K_LEFT]:
                 if self.food_arrow_poz == 2 or self.food_arrow_poz == 4:
                     self.rect.left -= self.food_move_length_left
                     self.food_arrow_poz -= 1
                     # print(self.food_arrow_poz)
 
-            if args and args[0][pygame.K_RIGHT]:
+            if args and args[pygame.K_RIGHT]:
                 if self.food_arrow_poz == 1 or self.food_arrow_poz == 3:
                     self.rect.left += self.food_move_length_left
                     self.food_arrow_poz += 1
                     # print(self.food_arrow_poz)
 
-            if args and args[0][pygame.K_UP]:
+            if args and args[pygame.K_UP]:
                 if self.food_arrow_poz == 3 or self.food_arrow_poz == 4:
                     self.rect.top -= self.food_move_length_down
                     self.food_arrow_poz -= 2
 
-            if args and args[0][pygame.K_DOWN]:
+            if args and args[pygame.K_DOWN]:
                 if self.food_arrow_poz == 1 or self.food_arrow_poz == 2:
                     self.rect.top += self.food_move_length_down
                     self.food_arrow_poz += 2
 
-            if args and args[0][pygame.K_RCTRL]:
+            if args and args[pygame.K_RCTRL]:
                 self.image = self.monster_arrow_image
 
                 self.rect.x = 20
@@ -111,7 +112,7 @@ class Arrow(pygame.sprite.Sprite):
                 self.arrow_poz = "Monst"
                 self.monster_arrow_poz = 1
 
-            if args and args[0][pygame.K_RSHIFT]:
+            if args and args[pygame.K_RSHIFT]:
                 if self.food_arrow_poz <= self.food_card_quantity:
                     print('Food was chosen')  # вывод сообщения)
                     self.food_card_quantity -= 1
