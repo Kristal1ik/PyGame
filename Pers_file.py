@@ -2,7 +2,7 @@ import pygame
 
 
 class Pers(pygame.sprite.Sprite):
-    image = pygame.image.load('game_imgs\Charecter.png')
+    image = pygame.image.load('Ка')
 
     # у персонажа изначальный размер = 100 * 60 пикселей
 
@@ -21,6 +21,8 @@ class Pers(pygame.sprite.Sprite):
         # Упращено
         dx = 0
         dy = 0
+        clock = pygame.time.Clock()
+        fps = 60
         f = False  # Проверка на то, нажат ли пробел
         args = pygame.key.get_pressed()
         if args[pygame.K_s]:
