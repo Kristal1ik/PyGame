@@ -2,13 +2,17 @@ import pygame
 
 
 class Pers(pygame.sprite.Sprite):
-    image = pygame.image.load('Ка')
 
     # у персонажа изначальный размер = 100 * 60 пикселей
 
     def __init__(self, group):
         super().__init__(group)
-        self.image = Pers.image
+        self.images = []
+        for i in range(1, 5):
+            image = pygame.image.load(f'Кадры анимации персонажей + gif\Peres_anim_cadr{i}.png')
+            self.images.append(image)
+        self.image = self.images[0]
+        self.n = 0  # индекс
         self.rect = self.image.get_rect()
         self.rect.x = 20
         self.rect.y = 450
