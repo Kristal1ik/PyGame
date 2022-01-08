@@ -65,7 +65,7 @@ if __name__ == '__main__':
             key = pygame.key.get_pressed()
             if key:
                 all_sprites.update()
-
+        print(all_sprites)
         all_sprites.draw(screen)
         all_sprites.update()
         pygame.display.flip()
