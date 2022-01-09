@@ -1,5 +1,5 @@
 import pygame
-
+import World_file
 
 class Pers(pygame.sprite.Sprite):
 
@@ -68,16 +68,13 @@ class Pers(pygame.sprite.Sprite):
             else:
                 self.image = pygame.transform.flip(self.images[2], True, False)
 
-
-
-
-
         # Гравитация
         self.vy += 1
         if self.vy > 10:
             self.vy = 10
         dy += self.vy
 
+        # Столкновение
         self.rect.x += dx
         self.rect.y += dy
 

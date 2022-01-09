@@ -25,6 +25,7 @@ class World:
     def draw(self):
         for i in self.tilelst:
             self.screen.blit(i[0], i[1])
+            print(i)
 
 
 # data = [
