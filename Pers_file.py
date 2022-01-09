@@ -13,6 +13,7 @@ class Pers(pygame.sprite.Sprite):
             self.images.append(image)
         self.image = self.images[0]
         self.n = 0  # индекс
+        self.nn = 0  # для анимации
         self.rect = self.image.get_rect()
         self.rect.x = 20
         self.rect.y = 450
@@ -26,6 +27,7 @@ class Pers(pygame.sprite.Sprite):
         dx = 0
         dy = 0
         clock = pygame.time.Clock()
+        time = 15
         fps = 60
         f = False  # Проверка на то, нажат ли пробел
         args = pygame.key.get_pressed()
@@ -38,8 +40,29 @@ class Pers(pygame.sprite.Sprite):
             f = False
         if args[pygame.K_d]:
             dx += 5
+            # анимация
+
+            self.nn += 1
+            if self.nn > time:
+                self.nn = 0
+                self.n += 1
+                if self.n >= len(self.images):
+                    self.n = 0
+                self.image = self.images[self.n]
         if args[pygame.K_a]:
             dx -= 5
+            # анимация
+
+            self.nn += 1
+            if self.nn > time:
+                self.nn = 0
+                self.n += 1
+                if self.n >= len(self.images):
+                    self.n = 0
+                self.image = self.images[self.n]
+
+
+
         # Гравитация
         self.vy += 1
         if self.vy > 10:
