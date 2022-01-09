@@ -18,6 +18,7 @@ class Pers(pygame.sprite.Sprite):
         self.rect.x = 20
         self.rect.y = 450
         self.vy = 0
+        self.side = 0
 
     def update(self):
         # Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
@@ -27,7 +28,7 @@ class Pers(pygame.sprite.Sprite):
         dx = 0
         dy = 0
         clock = pygame.time.Clock()
-        time = 15
+        time = 5
         fps = 60
         f = False  # Проверка на то, нажат ли пробел
         args = pygame.key.get_pressed()
@@ -40,8 +41,9 @@ class Pers(pygame.sprite.Sprite):
             f = False
         if args[pygame.K_d]:
             dx += 5
-            # анимация
 
+            # анимация
+            self.side = 1
             self.nn += 1
             if self.nn > time:
                 self.nn = 0
@@ -52,14 +54,21 @@ class Pers(pygame.sprite.Sprite):
         if args[pygame.K_a]:
             dx -= 5
             # анимация
-
+            self.side = -1
             self.nn += 1
             if self.nn > time:
                 self.nn = 0
                 self.n += 1
                 if self.n >= len(self.images):
                     self.n = 0
-                self.image = self.images[self.n]
+                self.image = pygame.transform.flip(self.images[self.n], True, False)
+        if not args[pygame.K_a] and not args[pygame.K_d]:
+            if self.side == 1:
+                self.image = self.images[2]
+            else:
+                self.image = pygame.transform.flip(self.images[2], True, False)
+
+
 
 
 
