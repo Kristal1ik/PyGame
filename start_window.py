@@ -5,29 +5,32 @@ class Start_window:
 
     def __init__(self):
         self.screen = screen
-        self.width, self.height = 700, 500
+        self.width, self.height = 1280, 601
         self.running, self.moving = True, False
 
     def draw(self):
         buttons_surf = pygame.image.load('game_imgs\Buttons.png')
-
+        bg = pygame.image.load('game_imgs\Back.jpg')
         buttons_surf = pygame.transform.scale(
             buttons_surf, (buttons_surf.get_width() // 2,
                            buttons_surf.get_height() // 2))
 
         buttons_rect = buttons_surf.get_rect(center=(self.width // 2, self.height // 2))
+        screen.blit(bg, (0, 0))
+
         screen.blit(buttons_surf, buttons_rect)
         pygame.display.update()
 
         # проверка координат
-        pygame.draw.rect(self.screen, pygame.Color('red'), (112, 81, 475, 125), 0)
-
-        pygame.draw.rect(self.screen, pygame.Color(0, 255, 0, 0), (172, 242, 356, 75), 0)
-
-        pygame.draw.rect(self.screen, pygame.Color(0, 0, 255, a=0), (172, 342, 356, 75), 0)
+        # pygame.draw.rect(self.screen, pygame.Color('red'), (112, 81, 475, 125), 0)
+        #
+        # pygame.draw.rect(self.screen, pygame.Color(0, 255, 0, 0), (172, 242, 356, 75), 0)
+        #
+        # pygame.draw.rect(self.screen, pygame.Color(0, 0, 255, a=0), (172, 342, 356, 75), 0)
 
     def run(self):
         while self.running:
+
             self.start_pos_x1, self.start_pos_y1 = 112, 81
             self.start_pos_x2, self.start_pos_y2 = 112 + 475, 81 + 125
 
@@ -58,10 +61,9 @@ class Start_window:
             pygame.display.flip()
 
 
-
 if __name__ == '__main__':
     pygame.init()
-    size = 700, 500
+    size = 1280, 601
     screen = pygame.display.set_mode(size)
 
     start_win = Start_window()
