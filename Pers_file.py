@@ -1,3 +1,7 @@
+import pygame
+
+class Pers(pygame.sprite.Sprite):
+
     # у персонажа изначальный размер = 100 * 60 пикселей
 
     def __init__(self, group):
