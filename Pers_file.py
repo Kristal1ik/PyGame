@@ -39,7 +39,7 @@ class Pers(pygame.sprite.Sprite):
         if args[pygame.K_w]:
             f = False
         if args[pygame.K_d]:
-            dx += 3
+            dx += 5
 
             # анимация
             self.side = 1
@@ -51,7 +51,7 @@ class Pers(pygame.sprite.Sprite):
                     self.n = 0
                 self.image = self.images[self.n]
         if args[pygame.K_a]:
-            dx -= 3
+            dx -= 5
             # анимация
             self.side = -1
             self.nn += 1
