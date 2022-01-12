@@ -1,13 +1,11 @@
 import pygame
-from Pers_file import Pers
 back_ground = pygame.image.load('game_imgs/Back_ground.png')
 
-
+tilelst = []
 class World:
     def __init__(self, data, tile_x, tile_y, screen):
         self.num_of_data = 1
         self.screen = screen
-        self.tilelst = []
         self.block = pygame.image.load('game_imgs/Block.png')
         n_row = 0
         for i in data:
@@ -19,14 +17,14 @@ class World:
                     rect.x = n * tile_x
                     rect.y = n_row * tile_y
                     j = (image, rect)
-                    self.tilelst.append(j)
+                    tilelst.append(j)
                 n += 1
             n_row += 1
-
     def draw(self):
-        for i in self.tilelst:
+        for i in tilelst:
             self.screen.blit(i[0], i[1])
-            print(i)
+            # print(i)
+        print(tilelst)
 
     def updating_world(self, coord_x, num_of_data):
         self.num_of_data = num_of_data
@@ -37,12 +35,11 @@ class World:
             if self.num_of_data == 2:
                 self.num_of_data = 1
 
-        print(self.num_of_data)
+        # print(self.num_of_data)
 
 
     def get_num_of_data(self):
         return self.num_of_data
-
 
 first_level_data = [
 ['.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.'],
