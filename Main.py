@@ -61,12 +61,12 @@ if __name__ == '__main__':
         table = Card_table(screen)
 
         # смена уровней. пока костыльно
-        # pers_x = pers.get_cords()
-        # num_of_data = world.get_num_of_data()
-        # if num_of_data == 2 and pers_x >= 1500:
-        #     world = World(second_level_data, tile_x, tile_y, screen)
-        # if num_of_data == 1 and pers_x <= 100:
-        #     world = World(first_level_data, tile_x, tile_y, screen)
+        pers_x = pers.get_cords()
+        num_of_data = world.get_num_of_data()
+        if num_of_data == 2 and pers_x >= 1500:
+            world = World(second_level_data, tile_x, tile_y, screen)
+        if num_of_data == 1 and pers_x <= 100:
+            world = World(first_level_data, tile_x, tile_y, screen)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
