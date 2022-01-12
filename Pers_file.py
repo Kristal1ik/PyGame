@@ -41,9 +41,7 @@ class Pers(pygame.sprite.Sprite):
         if args[pygame.K_s]:
             dy += 5
         if args[pygame.K_SPACE] and f == 1:
-            print(f)
             f = 0
-            print(f)
             self.vy = -15
 
         if args[pygame.K_d]:
@@ -102,6 +100,9 @@ class Pers(pygame.sprite.Sprite):
 
         self.rect.x += dx
         self.rect.y += dy
+
+    def get_cords(self):
+        return self.rect.x
 
 
 
