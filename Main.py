@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 all_sprites.update()
                 # print(pers_x)
                 # обновление мира
-                # world.updating_world(pers_x, num_of_data)
+                world.updating_world(pers_x, num_of_data)
 
 
         #print(all_sprites)
