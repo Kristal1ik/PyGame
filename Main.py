@@ -29,11 +29,11 @@ if __name__ == '__main__':
     pers = Pers(all_sprites)
     # создание списков названий монстров, еды и времени сна
     Monsters_name_list = cards.get_monster_cards()
-    print(Monsters_name_list)
+    # print(Monsters_name_list)
     Food_list = cards.get_food_cards()
-    print(Food_list)
+    # print(Food_list)
     Time_list = cards.get_sleeping_time()
-    print(Time_list)
+    # print(Time_list)
 
     # ---------------создание первых трех карточек МОНСТРИКОВ---------------
     First_monster = FirstMonster(all_sprites, screen, Monsters_name_list[0], Time_list[0])
