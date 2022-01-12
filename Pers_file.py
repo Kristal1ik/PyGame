@@ -1,5 +1,9 @@
 import pygame
-import World_file
+from World_file import tilelst
+import pickle
+from os import path
+from pygame import Rect
+
 
 class Pers(pygame.sprite.Sprite):
 
@@ -19,6 +23,8 @@ class Pers(pygame.sprite.Sprite):
         self.rect.y = 450
         self.vy = 0
         self.side = 0
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
 
     def update(self):
         # Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
@@ -30,15 +36,16 @@ class Pers(pygame.sprite.Sprite):
         clock = pygame.time.Clock()
         time = 5
         fps = 60
-        f = False  # Проверка на то, нажат ли пробел
+        f = 1  # Проверка на то, нажат ли пробел
         args = pygame.key.get_pressed()
         if args[pygame.K_s]:
             dy += 5
-        if args[pygame.K_SPACE] and not f:
+        if args[pygame.K_SPACE] and f == 1:
+            print(f)
+            f = 0
+            print(f)
             self.vy = -15
-            f = True
-        if args[pygame.K_SPACE]:
-            f = False
+
         if args[pygame.K_d]:
             dx += 5
 
@@ -75,9 +82,26 @@ class Pers(pygame.sprite.Sprite):
         dy += self.vy
 
         # Столкновение
+        for i in tilelst:
+            if i[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
+                dx = 0
+
+            if i[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+                # Столкновение при прыжке
+                if self.vy < 0:
+                    dy = i[1].bottom - self.rect.top
+                    self.vy = 0
+                    f = 0
+                # Столкновение при падении
+                elif self.vy >= 0:
+                    dy = i[1].top - self.rect.bottom
+                    f = 1
+
+                    self.vy = 0
+
+
         self.rect.x += dx
         self.rect.y += dy
 
-        if self.rect.bottom > 560:
-            self.rect.bottom = 560
-            dy = 0
+
+
