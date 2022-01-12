@@ -1,5 +1,6 @@
 import pygame
-import World_file
+from World_file import World, data, back_ground, tilelist
+
 
 class Pers(pygame.sprite.Sprite):
 
@@ -75,6 +76,7 @@ class Pers(pygame.sprite.Sprite):
         dy += self.vy
 
         # Столкновение
+
         self.rect.x += dx
         self.rect.y += dy
 

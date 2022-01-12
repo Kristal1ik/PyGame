@@ -1,12 +1,12 @@
 import pygame
-
+import os
+FPS = 60
 
 class Start_window:
 
     def __init__(self):
-        self.screen = screen
         self.width, self.height = 1280, 601
-        self.running, self.moving = True, False
+        # self.running, self.moving = True, False
 
     def draw(self):
         buttons_surf = pygame.image.load('game_imgs\Buttons.png')
@@ -29,40 +29,53 @@ class Start_window:
         # pygame.draw.rect(self.screen, pygame.Color(0, 0, 255, a=0), (172, 342, 356, 75), 0)
 
     def run(self):
-        while self.running:
-
-            self.start_pos_x1, self.start_pos_y1 = 112, 81
-            self.start_pos_x2, self.start_pos_y2 = 112 + 475, 81 + 125
-
-            self.sett_pos_x1, self.sett_pos_y1 = 172, 242
-            self.sett_pos_x2, self.sett_pos_y2 = 172 + 356, 242 + 75
-
-            self.about_pos_x1, self.about_pos_y1 = 172, 342
-            self.about_pos_x2, self.about_pos_y2 = 172 + 356, 342 + 75
-
+        running = True
+        while running:
+            # screen.fill((255, 255, 255))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    self.running = False
-
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    if self.start_pos_x1 < event.pos[0] < self.start_pos_x2 and self.start_pos_y1 < event.pos[
-                        1] < self.start_pos_y2:
-                        print(1)
-
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    if self.sett_pos_x1 < event.pos[0] < self.sett_pos_x2 and self.sett_pos_y1 < event.pos[
-                        1] < self.sett_pos_y2:
-                        print(2)
-
-                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    if self.about_pos_x1 < event.pos[0] < self.about_pos_x2 and self.about_pos_y1 < event.pos[
-                        1] < self.about_pos_y2:
-                        print(3)
+                    running = False
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                    return
+            pygame.display.flip()
+            clock.tick(FPS)
+            #
+            # self.start_pos_x1, self.start_pos_y1 = 112, 81
+            # self.start_pos_x2, self.start_pos_y2 = 112 + 475, 81 + 125
+            #
+            # self.sett_pos_x1, self.sett_pos_y1 = 172, 242
+            # self.sett_pos_x2, self.sett_pos_y2 = 172 + 356, 242 + 75
+            #
+            # self.about_pos_x1, self.about_pos_y1 = 172, 342
+            # self.about_pos_x2, self.about_pos_y2 = 172 + 356, 342 + 75
+            #
+            # for event in pygame.event.get():
+            #     if event.type == pygame.QUIT:
+            #         self.running = False
+            #
+            #     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            #         if self.start_pos_x1 < event.pos[0] < self.start_pos_x2 and self.start_pos_y1 < event.pos[
+            #             1] < self.start_pos_y2:
+            #             print(1)
+            #
+            #     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            #         if self.sett_pos_x1 < event.pos[0] < self.sett_pos_x2 and self.sett_pos_y1 < event.pos[
+            #             1] < self.sett_pos_y2:
+            #             print(2)
+            #
+            #     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            #         if self.about_pos_x1 < event.pos[0] < self.about_pos_x2 and self.about_pos_y1 < event.pos[
+            #             1] < self.about_pos_y2:
+            #             print(3)
             pygame.display.flip()
 
 
 if __name__ == '__main__':
     pygame.init()
+    clock = pygame.time.Clock()
+
     size = 1280, 601
     screen = pygame.display.set_mode(size)
 
@@ -70,5 +83,4 @@ if __name__ == '__main__':
     start_win.draw()
     start_win.run()
 
-    pygame.display.flip()
     pygame.quit()

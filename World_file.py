@@ -1,12 +1,11 @@
 import pygame
 
 back_ground = pygame.image.load('game_imgs\Back_ground.png')
-
+tilelist = []
 
 class World:
     def __init__(self, data, tile, screen):
         self.screen = screen
-        self.tilelst = []
         self.block = pygame.image.load('game_imgs\Block.png')
         n_row = 0
         for i in data:
@@ -18,12 +17,12 @@ class World:
                     rect.x = n * tile
                     rect.y = n_row * tile
                     j = (image, rect)
-                    self.tilelst.append(j)
+                    tilelist.append(j)
                 n += 1
             n_row += 1
 
     def draw(self):
-        for i in self.tilelst:
+        for i in tilelist:
             self.screen.blit(i[0], i[1])
             print(i)
 
