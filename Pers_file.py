@@ -97,7 +97,7 @@ class Pers(pygame.sprite.Sprite):
                     f = 1
 
                     self.vy = 0
-
+        print(dx, dy)
         self.rect.x += dx
         self.rect.y += dy
 
