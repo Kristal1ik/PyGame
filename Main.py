@@ -14,7 +14,7 @@ if __name__ == '__main__':
     display.set_caption('Монстрики/Монстры')
     size = width, height = 1600, 800
     screen = display.set_mode(size)
-    fps = 60
+    fps = 25
     tile_x, tile_y = 70, 50
 
     clock = pygame.time.Clock()
@@ -54,6 +54,7 @@ if __name__ == '__main__':
     running = True
 
     while running:
+        clock.tick(fps)
         screen.blit(back_ground, (0, 0))
         world.draw()
         table.draw()
