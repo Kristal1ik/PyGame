@@ -1,4 +1,5 @@
 import pygame
+from Try import Particle
 from pygame import display
 from Table_file import Card_table
 from World_file import World, back_ground, first_level_data, second_level_data
@@ -14,7 +15,7 @@ if __name__ == '__main__':
     display.set_caption('Монстрики/Монстры')
     size = width, height = 1600, 800
     screen = display.set_mode(size)
-    fps = 60
+    fps = 25
     tile_x, tile_y = 70, 50
 
     clock = pygame.time.Clock()
@@ -54,6 +55,7 @@ if __name__ == '__main__':
     running = True
 
     while running:
+        clock.tick(fps)
         screen.blit(back_ground, (0, 0))
         world.draw()
         table.draw()
@@ -76,7 +78,7 @@ if __name__ == '__main__':
                 all_sprites.update()
                 # print(pers_x)
                 # обновление мира
-                # world.updating_world(pers_x, num_of_data)
+                world.updating_world(pers_x, num_of_data)
 
 
         #print(all_sprites)

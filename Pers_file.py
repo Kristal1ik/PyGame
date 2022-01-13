@@ -12,7 +12,7 @@ class Pers(pygame.sprite.Sprite):
     def __init__(self, group):
         super().__init__(group)
         self.images = []
-        for i in range(1, 5):
+        for i in range(1, 6):
             image = pygame.image.load(f'Кадры анимации персонажей + gif\Peres_anim_cadr{i}.png')
             self.images.append(image)
         self.image = self.images[0]
@@ -69,9 +69,9 @@ class Pers(pygame.sprite.Sprite):
                 self.image = pygame.transform.flip(self.images[self.n], True, False)
         if not args[pygame.K_a] and not args[pygame.K_d]:
             if self.side == 1:
-                self.image = self.images[2]
+                self.image = self.images[4]
             else:
-                self.image = pygame.transform.flip(self.images[2], True, False)
+                self.image = pygame.transform.flip(self.images[4], True, False)
 
         # Гравитация
         self.vy += 1
@@ -81,6 +81,7 @@ class Pers(pygame.sprite.Sprite):
 
         # Столкновение
         for i in tilelst:
+
             if i[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                 dx = 0
 
@@ -96,13 +97,9 @@ class Pers(pygame.sprite.Sprite):
                     f = 1
 
                     self.vy = 0
-
-
+        print(dx, dy)
         self.rect.x += dx
         self.rect.y += dy
 
     def get_cords(self):
         return self.rect.x
-
-
-
