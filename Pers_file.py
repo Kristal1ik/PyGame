@@ -71,7 +71,7 @@ class Pers(pygame.sprite.Sprite):
             if self.side == 1:
                 self.image = self.images[4]
             else:
-                self.image = pygame.transform.flip(self.images[2], True, False)
+                self.image = pygame.transform.flip(self.images[4], True, False)
 
         # Гравитация
         self.vy += 1
@@ -81,6 +81,7 @@ class Pers(pygame.sprite.Sprite):
 
         # Столкновение
         for i in tilelst:
+
             if i[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                 dx = 0
 
@@ -97,12 +98,8 @@ class Pers(pygame.sprite.Sprite):
 
                     self.vy = 0
 
-
         self.rect.x += dx
         self.rect.y += dy
 
     def get_cords(self):
         return self.rect.x
-
-
-
