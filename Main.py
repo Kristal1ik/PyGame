@@ -1,4 +1,5 @@
 import pygame
+from Try import Particle
 from pygame import display
 from Table_file import Card_table
 from World_file import World, back_ground, first_level_data, second_level_data
