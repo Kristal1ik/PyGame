@@ -11,6 +11,9 @@ class World:
         self.screen = screen
         self.block = pygame.image.load('game_imgs/Block.png')
         self.block = pygame.transform.scale(self.block, (70, 50))
+        self.kristall = pygame.image.load('game_imgs/Kristall.png')
+        self.kristall = pygame.transform.scale(self.kristall, (36, 30))
+
         n_row = 0
         for i in data:
             n = 0
@@ -22,6 +25,14 @@ class World:
                     rect.y = n_row * tile_y
                     j = (image, rect)
                     tilelst.append(j)
+                elif j == 1:
+                    image = self.kristall
+                    rect = image.get_rect()
+                    rect.x = n * tile_x
+                    rect.y = n_row * tile_y
+                    j = (image, rect)
+                    tilelst.append(j)
+
                 n += 1
             n_row += 1
 
@@ -54,7 +65,7 @@ first_level_data = [
     ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.'],
     ['.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'A', 'X', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
+    ['X', 'X', 'X', 'X', '.', '.', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X'],
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
