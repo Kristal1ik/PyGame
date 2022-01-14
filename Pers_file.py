@@ -25,6 +25,8 @@ class Pers(pygame.sprite.Sprite):
         self.side = 0
         self.width = self.image.get_width()
         self.height = self.image.get_height()
+        self.air = True
+        self.f = True
 
     def update(self):
         # Изменены клавиши управления, чтобы при работе не было конфликта с классом Arrow.
@@ -36,13 +38,15 @@ class Pers(pygame.sprite.Sprite):
         clock = pygame.time.Clock()
         time = 5
         fps = 60
-        f = 1  # Проверка на то, нажат ли пробел
+
         args = pygame.key.get_pressed()
         if args[pygame.K_s]:
             dy += 5
-        if args[pygame.K_SPACE] and f == 1:
-            f = 0
+        if args[pygame.K_SPACE] and not self.f and not self.air:
+            self.f = True
             self.vy = -15
+        if not args[pygame.K_SPACE]:
+            self.f = False
 
         if args[pygame.K_d]:
             dx += 5
@@ -80,6 +84,7 @@ class Pers(pygame.sprite.Sprite):
         dy += self.vy
 
         # Столкновение
+        self.air = True
         for i in tilelst:
 
             if i[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
@@ -94,8 +99,7 @@ class Pers(pygame.sprite.Sprite):
                 # Столкновение при падении
                 elif self.vy >= 0:
                     dy = i[1].top - self.rect.bottom
-                    f = 1
-
+                    self.air = False
                     self.vy = 0
         print(dx, dy)
         self.rect.x += dx
