@@ -19,7 +19,7 @@ if __name__ == '__main__':
     size = width, height = 1600, 800
 
     screen = display.set_mode(size)
-    fps = 25
+    fps = 60
     tile_x, tile_y = 70, 50
     menu = True
 
