@@ -8,6 +8,7 @@ from Arrow_file import Arrow
 from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster, \
     FourthMonster, FifthMonster, SixMonster
 from Pers_file import Pers
+from Kristall import Kristall
 
 from Card_init_file import FirstFood, SecondFood, ThirdFood, FourthFood
 
@@ -43,6 +44,7 @@ if __name__ == '__main__':
     table = Card_table(screen)
     cards = CardInnit()
     pers = Pers(all_sprites)
+
     # создание списков названий монстров, еды и времени сна
     Monsters_name_list = cards.get_monster_cards()
     # print(Monsters_name_list)
