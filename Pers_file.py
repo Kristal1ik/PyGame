@@ -107,3 +107,10 @@ class Pers(pygame.sprite.Sprite):
 
     def get_cords(self):
         return self.rect.x
+    
+    def move_pers(self):
+        self.rect.x = 800
+        self.rect.y = 450
+
+    def change_tilelst(self, new_tilelst):
+        self.tilelst = new_tilelst
