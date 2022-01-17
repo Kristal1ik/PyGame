@@ -3,7 +3,7 @@ import pygame
 from pygame import display
 from Button import Button
 from Table_file import Card_table
-from World_file import World, back_ground, first_level_data, second_level_data
+from World_file import World, back_ground, first_level_data, second_level_data, kristall_group
 from Arrow_file import Arrow
 from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster, \
     FourthMonster, FifthMonster, SixMonster
@@ -26,12 +26,17 @@ if __name__ == '__main__':
 
     all_sprites = pygame.sprite.Group()
 
+    ##########################################
+
+    ##########################################
+
+
     # создание основных объектов
+    score = 0
     image_start = pygame.image.load('game_imgs/Start.png')
     image_start = pygame.transform.scale(image_start, (484, 131))
     bg = pygame.image.load('game_imgs\Back.jpg')
     bg = pygame.transform.scale(bg, (width, height))
-
     button = Button(width, height, image_start, screen)
     world = World(first_level_data, tile_x, tile_y, screen)
     num_of_data = 1
@@ -72,9 +77,12 @@ if __name__ == '__main__':
                 menu = False
         else:
             screen.blit(back_ground, (0, 0))
-
+            if pygame.sprite.spritecollide(pers, kristall_group, True):
+                score += 1
+            kristall_group.draw(screen)
             world.draw()
             table.draw()
+
             table = Card_table(screen)
 
             # смена уровней. пока костыльно
@@ -87,12 +95,14 @@ if __name__ == '__main__':
             key = pygame.key.get_pressed()
             if key:
                 all_sprites.update()
-                # print(pers_x)
+                kristall_group.update()
                 # обновление мира
                 world.updating_world(pers_x, num_of_data)
-            # print(all_sprites)
+
+
             all_sprites.draw(screen)
             all_sprites.update()
+            kristall_group.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
