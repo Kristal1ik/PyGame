@@ -30,10 +30,7 @@ class World:
                     tilelst.append(j)
                 elif j == 1:
 
-                    kristall = Kristall(24, 20)
-                    rect = self.kristall.get_rect()
-                    rect.x = n * tile_x
-                    rect.y = n_row * tile_y
+                    kristall = Kristall(n * tile_x + (tile_x // 2), n_row * tile_y + (tile_y // 2))
                     kristall_group.add(kristall)
                     print(kristall.get_rect())
 
