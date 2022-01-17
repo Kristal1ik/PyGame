@@ -1,17 +1,20 @@
 import pygame
+from Kristall import Kristall
 
 back_ground = pygame.image.load('game_imgs/Back_ground.png')
 
 tilelst = []
+kristall_group = pygame.sprite.Group()
 
 
 class World:
     def __init__(self, data, tile_x, tile_y, screen):
+
         self.num_of_data = 1
         self.screen = screen
         self.block = pygame.image.load('game_imgs/Block.png')
         self.block = pygame.transform.scale(self.block, (70, 50))
-        self.kristall = pygame.image.load('game_imgs/Kristall.png')
+        self.kristall = pygame.image.load('game_imgs/Kristall1.png')
         self.kristall = pygame.transform.scale(self.kristall, (36, 30))
 
         n_row = 0
@@ -26,18 +29,19 @@ class World:
                     j = (image, rect)
                     tilelst.append(j)
                 elif j == 1:
-                    image = self.kristall
-                    rect = image.get_rect()
+
+                    kristall = Kristall(24, 20)
+                    rect = self.kristall.get_rect()
                     rect.x = n * tile_x
                     rect.y = n_row * tile_y
-                    j = (image, rect)
-                    tilelst.append(j)
-                elif j == 'l':
-                    pass
+                    kristall_group.add(kristall)
+                    print(kristall.get_rect())
 
 
                 n += 1
             n_row += 1
+        print(kristall_group)
+
 
     def draw(self):
         for i in tilelst:
@@ -64,7 +68,7 @@ first_level_data = [
     ['X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'A'],
     ['X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.'],
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'A', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.'],
-    ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', 'X'],
+    ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 1, '.', 'X', 'X', '.', '.', '.', 'X'],
     ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.'],
     ['.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'A', 'X', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
