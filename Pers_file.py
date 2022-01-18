@@ -1,5 +1,4 @@
 import pygame
-from World_file import tilelst
 import pickle
 from os import path
 from pygame import Rect
@@ -9,7 +8,8 @@ class Pers(pygame.sprite.Sprite):
 
     # у персонажа изначальный размер = 100 * 60 пикселей
 
-    def __init__(self, group):
+    def __init__(self, group, tilelst):
+        self.tilelst = tilelst
         super().__init__(group)
         self.images = []
         for i in range(1, 6):
@@ -85,7 +85,7 @@ class Pers(pygame.sprite.Sprite):
 
         # Столкновение
         self.air = True
-        for i in tilelst:
+        for i in self.tilelst:
 
             if i[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
                 dx = 0
@@ -107,9 +107,13 @@ class Pers(pygame.sprite.Sprite):
 
     def get_cords(self):
         return self.rect.x
-    
-    def move_pers(self):
-        self.rect.x = 800
+
+    def move_pers_foward(self):
+        self.rect.x = 1460
+        self.rect.y = 450
+
+    def move_pers_back(self):
+        self.rect.x = 60
         self.rect.y = 450
 
     def change_tilelst(self, new_tilelst):
