@@ -1,5 +1,5 @@
 import pygame
-# from start_window import Start_window, buttons_rect
+from pygame import mixer
 from pygame import display
 from Button import Button
 from Table_file import Card_table
@@ -13,6 +13,7 @@ from Kristall import Kristall
 from Card_init_file import FirstFood, SecondFood, ThirdFood, FourthFood
 
 if __name__ == '__main__':
+    pygame.mixer.pre_init()
     pygame.init()
     display.set_caption('Монстрики/Монстры')
 
@@ -27,9 +28,7 @@ if __name__ == '__main__':
 
     all_sprites = pygame.sprite.Group()
 
-    ##########################################
-
-    ##########################################
+    # ---------------ЗВУКИ---------------
 
 
     # создание основных объектов
@@ -70,7 +69,7 @@ if __name__ == '__main__':
 
     arrow = Arrow(all_sprites, screen)
     running = True
-
+    print(score)
     while running:
         clock.tick(fps)
         if menu:
@@ -100,7 +99,6 @@ if __name__ == '__main__':
                 kristall_group.update()
                 # обновление мира
                 world.updating_world(pers_x, num_of_data)
-
 
             all_sprites.draw(screen)
             all_sprites.update()
