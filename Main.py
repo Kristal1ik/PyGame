@@ -3,7 +3,7 @@ import pygame
 from pygame import display
 from Button import Button
 from Table_file import Card_table
-from World_file import World, back_ground, first_level_data, second_level_data, kristall_group
+from World_file import World, back_ground, kristall_group
 from Arrow_file import Arrow
 from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster, \
     FourthMonster, FifthMonster, SixMonster
@@ -11,6 +11,45 @@ from Pers_file import Pers
 from Kristall import Kristall
 
 from Card_init_file import FirstFood, SecondFood, ThirdFood, FourthFood
+
+
+first_level_data = [
+    ['.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.'],
+    ['X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'A'],
+    ['X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'A', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.'],
+    ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 1, '.', 'X', 'X', '.', '.', '.', 'X'],
+    ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'A', 'X', 'X'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['X', 'X', 'X', 'X', '.', '.', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
+    ['.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', 'l', 'l', 'l', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
+     'X', ]]
+
+# data = open('First_world_data.txt', 'r')
+
+second_level_data = [
+    ['X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', '.', '.',
+     'X'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', 'X'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', 'X', 'X', 'X', '.', '.', 'X', 'X', '.', '.', '.', '.', 'X', 'X'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.''X', 'A', 'X', '.', '.', '.', 'X', '.', '.', '.',
+     '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'A', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
+    ['X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.',
+     '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', 'X', 'X', '.', '.', 'A', 'X', 'X', 'X'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.'],
+    ['X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'x'],
+    ['X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.',
+     '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
+     'X', ]]
+
+
 
 if __name__ == '__main__':
     pygame.init()
@@ -40,10 +79,11 @@ if __name__ == '__main__':
     bg = pygame.transform.scale(bg, (width, height))
     button = Button(width, height, image_start, screen)
     world = World(first_level_data, tile_x, tile_y, screen)
+    tilelst = world.get_tilelst()
     num_of_data = 1
     table = Card_table(screen)
     cards = CardInnit()
-    pers = Pers(all_sprites)
+    pers = Pers(all_sprites, tilelst)
 
     # создание списков названий монстров, еды и времени сна
     Monsters_name_list = cards.get_monster_cards()
@@ -89,17 +129,20 @@ if __name__ == '__main__':
 
             # смена уровней. пока костыльно
             pers_x = pers.get_cords()
-            num_of_data = world.get_num_of_data()
-            if num_of_data == 2 and pers_x >= 1500:
-                world = World(second_level_data, tile_x, tile_y, screen)
-            if num_of_data == 1 and pers_x <= 100:
-                world = World(first_level_data, tile_x, tile_y, screen)
-            key = pygame.key.get_pressed()
-            if key:
-                all_sprites.update()
-                kristall_group.update()
-                # обновление мира
-                world.updating_world(pers_x, num_of_data)
+            if pers_x >= 1500 and num_of_data == 1:
+                main_data = second_level_data
+                world = World(main_data, tile_x, tile_y, screen)
+                new_tilelst = world.get_tilelst()
+                pers.change_tilelst(new_tilelst)
+                num_of_data = 2
+                pers.move_pers_back()
+            elif pers_x <= 15 and num_of_data == 2:
+                main_data = first_level_data
+                world = World(main_data, tile_x, tile_y, screen)
+                new_tilelst = world.get_tilelst()
+                pers.change_tilelst(new_tilelst)
+                num_of_data = 1
+                pers.move_pers_foward()
 
 
             all_sprites.draw(screen)
