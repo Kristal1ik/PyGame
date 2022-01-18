@@ -10,8 +10,7 @@ from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster,
 from Pers_file import Pers
 from Kristall import Kristall
 
-from Card_init_file import FirstFood, SecondFood, ThirdFood, FourthFood
-
+from Card_init_file import FirstKristall, SecondKristall, ThirdKristall, FourthKristall
 
 first_level_data = [
     ['.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.'],
@@ -49,8 +48,6 @@ second_level_data = [
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
      'X', ]]
 
-
-
 if __name__ == '__main__':
     pygame.init()
     display.set_caption('Монстрики/Монстры')
@@ -70,7 +67,6 @@ if __name__ == '__main__':
 
     ##########################################
 
-
     # создание основных объектов
     score = 0
     image_start = pygame.image.load('game_imgs/Start.png')
@@ -88,28 +84,35 @@ if __name__ == '__main__':
     # создание списков названий монстров, еды и времени сна
     Monsters_name_list = cards.get_monster_cards()
     # print(Monsters_name_list)
-    Food_list = cards.get_food_cards()
-    # print(Food_list)
-    Time_list = cards.get_sleeping_time()
+    # Food_list = cards.get_food_cards()
+    # # print(Food_list)
+    # Time_list = cards.get_sleeping_time()
     # print(Time_list)
 
     # ---------------создание первых трех карточек МОНСТРИКОВ---------------
-    First_monster = FirstMonster(all_sprites, screen, Monsters_name_list[0], Time_list[0])
-    Second_monster = SecondMonster(all_sprites, screen, Monsters_name_list[1], Time_list[1])
-    Third_monster = ThirdMonster(all_sprites, screen, Monsters_name_list[2], Time_list[2])
+    First_monster = FirstMonster(all_sprites, screen, Monsters_name_list[0])
+    Second_monster = SecondMonster(all_sprites, screen, Monsters_name_list[1])
+    Third_monster = ThirdMonster(all_sprites, screen, Monsters_name_list[2])
     Fourth_Monster = None
     Fifth_Monster = None
     Six_Monster = None
 
     # ---------------создание первых четырех карточек ЕДЫ---------------
 
-    First_Food = FirstFood(all_sprites, screen, Food_list[0])
-    Second_Food = SecondFood(all_sprites, screen, Food_list[1])
-    Third_Food = None
-    Fourth_Food = None
+    # First_Food = FirstFood(all_sprites, screen, Food_list[0])
+    # Second_Food = SecondFood(all_sprites, screen, Food_list[1])
+    # Third_Food = None
+    # Fourth_Food = None
+    First_kris_card = FirstKristall(all_sprites, screen)
+    Second_kris_card = SecondKristall(all_sprites, screen)
+    Third_kris_card = ThirdKristall(all_sprites, screen)
+    Fourth_kris_card = FourthKristall(all_sprites, screen)
 
     arrow = Arrow(all_sprites, screen)
     running = True
+    can_update_arr = True
+    now = 1
+    last = 1
 
     while running:
         clock.tick(fps)
@@ -121,6 +124,18 @@ if __name__ == '__main__':
             screen.blit(back_ground, (0, 0))
             if pygame.sprite.spritecollide(pers, kristall_group, True):
                 score += 1
+                if First_kris_card.get_count() < 4:
+                    First_kris_card.plus_one()
+                elif Second_kris_card.get_count() < 4:
+                    Second_kris_card.plus_one()
+                elif Third_kris_card.get_count() < 4:
+                    Third_kris_card.plus_one()
+                elif Fourth_kris_card.get_count() < 4:
+                    Fourth_kris_card.plus_one()
+                else:
+                    pass
+            # вывести сообщение о переполненном инвентаре
+
             kristall_group.draw(screen)
             world.draw()
             table.draw()
@@ -144,10 +159,21 @@ if __name__ == '__main__':
                 num_of_data = 1
                 pers.move_pers_foward()
 
-
             all_sprites.draw(screen)
             all_sprites.update()
+
+            if can_update_arr and arrow.get_args():
+                arrow.update_arrow()
+
+                can_update_arr = False
+                last = None
+                if not last:
+                    last = pygame.time.get_ticks()
+            now = pygame.time.get_ticks()
+            if now - last >= 200:
+                can_update_arr = True
             kristall_group.update()
+            print(now, last)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
