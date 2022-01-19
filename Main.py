@@ -1,13 +1,14 @@
 import pygame
-from pygame import mixer
+# from start_window import Start_window, buttons_rect
 from pygame import display
 from Button import Button
+from pygame import mixer
 from Table_file import Card_table
 from World_file import World, back_ground, kristall_group
 from Arrow_file import Arrow
 from Card_init_file import CardInnit, FirstMonster, SecondMonster, ThirdMonster, \
     FourthMonster, FifthMonster, SixMonster
-from Pers_file import Pers
+from Pers_file import Pers, get_sound
 from Kristall import Kristall
 
 from Card_init_file import FirstKristall, SecondKristall, ThirdKristall, FourthKristall
@@ -42,14 +43,14 @@ second_level_data = [
      '.'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', 'X', 'X', '.', '.', 'A', 'X', 'X', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'x'],
-    ['X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.',
+    ['X', 'X', 'X', '.', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'x'],
+    ['X', 'X', 'X', 'X', 'X', 'X', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.',
      '.'],
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
      'X', ]]
 
 if __name__ == '__main__':
-    pygame.mixer.pre_init()
+
     pygame.init()
     display.set_caption('Монстрики/Монстры')
 
@@ -64,7 +65,7 @@ if __name__ == '__main__':
 
     all_sprites = pygame.sprite.Group()
 
-    # ---------------ЗВУКИ---------------
+
 
     # создание основных объектов
     score = 0
@@ -109,7 +110,6 @@ if __name__ == '__main__':
 
     arrow = Arrow(all_sprites, screen)
     running = True
-    print(score)
     can_update_arr = True
     now = 1
     last = 1
@@ -123,7 +123,9 @@ if __name__ == '__main__':
         else:
             screen.blit(back_ground, (0, 0))
             if pygame.sprite.spritecollide(pers, kristall_group, True):
+                get_sound.play()
                 score += 1
+
                 if First_kris_card.get_count() < 4:
                     First_kris_card.plus_one()
                 elif Second_kris_card.get_count() < 4:
@@ -144,19 +146,6 @@ if __name__ == '__main__':
 
             # смена уровней. пока костыльно
             pers_x = pers.get_cords()
-
-            num_of_data = world.get_num_of_data()
-            if num_of_data == 2 and pers_x >= 1500:
-                world = World(second_level_data, tile_x, tile_y, screen)
-            if num_of_data == 1 and pers_x <= 100:
-                world = World(first_level_data, tile_x, tile_y, screen)
-            key = pygame.key.get_pressed()
-            if key:
-                all_sprites.update()
-                kristall_group.update()
-                # обновление мира
-                world.updating_world(pers_x, num_of_data)
-
             if pers_x >= 1500 and num_of_data == 1:
                 main_data = second_level_data
                 world = World(main_data, tile_x, tile_y, screen)
@@ -171,7 +160,6 @@ if __name__ == '__main__':
                 pers.change_tilelst(new_tilelst)
                 num_of_data = 1
                 pers.move_pers_foward()
-
 
             all_sprites.draw(screen)
             all_sprites.update()
