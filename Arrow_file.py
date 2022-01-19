@@ -35,7 +35,7 @@ class Arrow(pygame.sprite.Sprite):
 
         self.image = self.monster_arrow_image
 
-    def update(self):
+    def update_arrow(self):
         args = pygame.key.get_pressed()
         if self.arrow_poz == "Monst":  # если курсор в зоне карт с монстрами
             if args and args[pygame.K_LEFT]:
@@ -43,6 +43,8 @@ class Arrow(pygame.sprite.Sprite):
                     self.rect.left -= self.monster_move_length
                     self.monster_arrow_poz -= 1
                     # print(self.arrow_poz)
+
+
             if args and args[pygame.K_RIGHT]:
                 if self.monster_arrow_poz < self.max_monsters_quantity:
                     self.rect.left += self.monster_move_length
@@ -124,3 +126,21 @@ class Arrow(pygame.sprite.Sprite):
                         print('This food slot is blank')  # вывод сообщения
                     else:
                         print("You'v not any food")  # вывод сообщения
+
+    def get_args(self):
+        args = pygame.key.get_pressed()
+        if args and args[pygame.K_LEFT]:
+            return 1
+        if args and args[pygame.K_RIGHT]:
+            return 1
+        if args and args[pygame.K_UP]:
+            return 1
+        if args and args[pygame.K_DOWN]:
+            return 1
+        if args and args[pygame.K_RCTRL]:
+            return 1
+        if args and args[pygame.K_RSHIFT]:
+            return 1
+        if args and args[pygame.K_RETURN]:
+            return 1
+        return 0
