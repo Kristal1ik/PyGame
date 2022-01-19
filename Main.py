@@ -66,7 +66,6 @@ if __name__ == '__main__':
     all_sprites = pygame.sprite.Group()
 
 
-
     # создание основных объектов
     score = 0
     image_start = pygame.image.load('game_imgs/Start.png')
