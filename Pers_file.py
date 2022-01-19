@@ -2,8 +2,19 @@ import pygame
 import pickle
 from os import path
 from pygame import Rect
+from pygame import mixer
 
 
+pygame.mixer.pre_init(44100, -16, 2, 512)
+mixer.init()
+# ---------------Добавление ЗВКОВ---------------
+get_sound = pygame.mixer.Sound('Sounds/Сбор.wav')
+get_sound.set_volume(0.5)
+jump_sound = pygame.mixer.Sound('Sounds/Прыжок.wav')
+jump_sound.set_volume(0.5)
+
+
+##########################################
 class Pers(pygame.sprite.Sprite):
 
     # у персонажа изначальный размер = 100 * 60 пикселей
@@ -43,6 +54,7 @@ class Pers(pygame.sprite.Sprite):
         if args[pygame.K_s]:
             dy += 5
         if args[pygame.K_SPACE] and not self.f and not self.air:
+            jump_sound.play()
             self.f = True
             self.vy = -15
         if not args[pygame.K_SPACE]:
