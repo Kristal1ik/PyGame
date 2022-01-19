@@ -24,7 +24,7 @@ class CardInnit:  # определение монстров
 
     # Случайная генерация имен (названий файлов .png) монстриков
     def get_monster_cards(self):
-        self.monster_probability = [6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 1]  # вероятность выпадения той или иной
+        self.monster_probability = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1]  # вероятность выпадения той или иной
         # карты монстрика соответственно, в пропорциональном отношении
         self.monster_nums = random.choices(self.monsters_names, weights=self.monster_probability, k=3)
 
@@ -78,6 +78,8 @@ class FirstMonster(pygame.sprite.Sprite):
     def activated(self):
         self.hitpoint = 100  # значение урона (по ходу продакешна может изменится)
         self.new_image = 1  # создастся новое временное изображение на время анимации атаки
+        self.activated_card = True
+
 
 
 class SecondMonster(pygame.sprite.Sprite):
