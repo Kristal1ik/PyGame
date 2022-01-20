@@ -36,17 +36,25 @@ second_level_data = [
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', 'X'],
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', 'X', 'X', 'X', '.', '.', 'X', 'X', '.', '.', '.', '.', 'X', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', 1, '.', '.', '.', '.'],
-    ['.', '.', '.', '.', 1, '.', '.', '.', '.', '.', 'X', '.', '.''X', 'A', 'X', '.', '.', '.', 'X', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', 'X', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', '/', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', '.', '.'],
-    ['.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', 'X', 'X', '.', '.', 'X', 'X', '.', '.', 'A', 'X', 'X', 'X', '.'],
-    ['.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.']]
+    ['.', '.', '.', '.', 1, '.', '.', '.', '.', '.', 'X', '.', '.''X', 'A', 'X', '.', '.', '.', 'X', '.', '.', '.',
+     '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+     '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', '/', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', '.',
+     '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', 'X', 'X', '.', '.', 'X', 'X', '.', '.', 'A', 'X', 'X', 'X',
+     '.'],
+    ['.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.',
+     '.'],
+    ['X', 'X', 'X', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+     '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.',
+     '.', '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
+     '.']]
 
 third_level_data = [
-    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X','X','X', 'X', 'X', 'X', 'X', 'X',
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
      'X'],
     ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
     ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X'],
@@ -76,7 +84,6 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
 
     all_sprites = pygame.sprite.Group()
-
 
     # создание основных объектов
     score = 0
@@ -129,6 +136,7 @@ if __name__ == '__main__':
     last_world = False
     i = 0
     last_count = 0
+    count_of_attacks = 0
     while running:
         i += 1
         clock.tick(fps)
@@ -157,14 +165,95 @@ if __name__ == '__main__':
                     Third_kris_card.plus_one()
                 elif Fourth_kris_card.get_count() < 4:
                     Fourth_kris_card.plus_one()
-                last_count = First_kris_card.get_count()
+                last_count = score
                 arrow.food_card_quantity = First_kris_card.get_count()
 
-                now_score = arrow.get_count_kris()
-                print(now_score)
+            now_score = arrow.get_count_kris()
+            print(now_score, last_count)
+            is_monstr_activated = arrow.get_is_ret_monst()
+            print(is_monstr_activated)
+            if is_monstr_activated and now_score > 1:
+                now_score -= 2
+                monstr_activated = True
+                if Fourth_kris_card.get_count() > 0:
+                    Fourth_kris_card.count -= 1
+                    Fourth_kris_card.image = pygame.image.load(
+                        f'game_imgs/Kristals/Card_Kris{Fourth_kris_card.count}.png')
+                elif Third_kris_card.get_count() > 0:
+                    Third_kris_card.count -= 1
+                    Third_kris_card.image = pygame.image.load(
+                        f'game_imgs/Kristals/Card_Kris{Third_kris_card.count}.png')
+                elif Second_kris_card.get_count() > 0:
+                    Second_kris_card.count -= 1
+                    Second_kris_card.image = pygame.image.load(
+                        f'game_imgs/Kristals/Card_Kris{Second_kris_card.count}.png')
+                elif First_kris_card.get_count() > 0:
+                    First_kris_card.count -= 1
+                    First_kris_card.image = pygame.image.load(
+                        f'game_imgs/Kristals/Card_Kris{First_kris_card.count}.png')
+                else:
+                    monstr_activated = False
+                num_of_mon_card = arrow.get_activated_card()
+                print(num_of_mon_card)
+                if monstr_activated:
+                    if First_monster:
+                        if First_monster.get_num() == num_of_mon_card:
+                            First_monster = Second_monster
+                            Second_monster = Third_monster
+                            Third_monster = Fourth_Monster
+                            Fourth_Monster = Fifth_Monster
+                            Fifth_Monster = Six_Monster
+                            First_monster.rect.x -= 188
+                            if Second_monster:
+                                Second_monster.rect.x -= 188
+                            if Third_monster:
+                                Third_monster.rect.x -= 188
+                            if Fourth_Monster:
+                                Fourth_Monster.rect.x -= 188
+                            if Fifth_Monster:
+                                Fifth_Monster.rect.x -= 188
+                            Six_Monster = None
+                    if Second_monster:
+                        if Second_monster.get_num() == num_of_mon_card:
+                            Second_monster, Third_monster, Fourth_Monster, Fifth_Monster, \
+                            Six_Monster = Third_monster, Fourth_Monster, Fifth_Monster, Six_Monster, None
+                            Second_monster.rect.x -= 188
+                            if Third_monster:
+                                Third_monster.rect.x -= 188
+                            if Fourth_Monster:
+                                Fourth_Monster.rect.x -= 188
+                            if Fifth_Monster:
+                                Fifth_Monster.rect.x -= 188
+                    if Third_monster:
+                        if Third_monster.get_num() == num_of_mon_card:
+                            Third_monster, Fourth_Monster, Fifth_Monster, \
+                            Six_Monster = Fourth_Monster, Fifth_Monster, Six_Monster, None
+                            Third_monster.rect.x -= 188
+                            if Fourth_Monster:
+                                Fourth_Monster.rect.x -= 188
+                            if Fifth_Monster:
+                                Fifth_Monster.rect.x -= 188
+                    if Fourth_Monster:
+                        if Fourth_Monster.get_num() == num_of_mon_card:
+                            Fourth_Monster, Fifth_Monster, \
+                            Six_Monster = Fifth_Monster, Six_Monster, None
+                            Fourth_Monster.rect.x -= 188
+                            if Fifth_Monster:
+                                Fifth_Monster.rect.x -= 188
+                    if Fifth_Monster:
+                        if Fifth_Monster.get_num() == num_of_mon_card:
+                            Fifth_Monster, \
+                            Six_Monster = Six_Monster, None
+                            if Fifth_Monster:
+                                Fifth_Monster.rect.x -= 188
+                    if Six_Monster:
+                        if Six_Monster.get_num() == num_of_mon_card:
+                            Six_Monster = None
+                    count_of_attacks += 1 # СЧЕТТТТТТТТТТТТЧИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИК
 
 
             # вывести сообщение о переполненном инвентаре
+
 
             kristall_group.draw(screen)
             world.draw()
