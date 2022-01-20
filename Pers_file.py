@@ -3,7 +3,13 @@ import pickle
 from os import path
 from pygame import Rect
 from pygame import mixer
+from Text import Text
 
+with open('Text', mode='rb') as ff:
+    word = ff.read()
+x = 1600
+y = 800
+text = Text(word, x, y)
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 mixer.init()
@@ -51,6 +57,9 @@ class Pers(pygame.sprite.Sprite):
         fps = 60
 
         args = pygame.key.get_pressed()
+        # Пауза
+        if args[pygame.K_ESCAPE]:
+            pause()
         if args[pygame.K_s]:
             dy += 5
         if args[pygame.K_SPACE] and not self.f and not self.air:
@@ -130,3 +139,16 @@ class Pers(pygame.sprite.Sprite):
 
     def change_tilelst(self, new_tilelst):
         self.tilelst = new_tilelst
+
+
+def pause():
+    pause = True
+    while pause:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pause = False
+        text.create()
+        k = pygame.key.get_pressed()
+        if k[pygame.K_RETURN]:
+            pause = False
+        pygame.display.update()
