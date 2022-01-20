@@ -1,7 +1,7 @@
 import pygame
 from Kristall import Kristall
 
-back_ground = pygame.image.load('game_imgs/Back_ground.png')
+back_ground = pygame.image.load('game_imgs/Back_ground.jpg')
 
 kristall_group = pygame.sprite.Group()
 
@@ -36,7 +36,7 @@ class World:
 
                 n += 1
             n_row += 1
-        print(kristall_group)
+        # print(kristall_group)
 
 
     def draw(self):
