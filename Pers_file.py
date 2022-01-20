@@ -13,7 +13,7 @@ text = Text(word, x, y)
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 mixer.init()
-# ---------------Добавление ЗВКОВ---------------
+# ---------------Добавление ЗВУОВ---------------
 get_sound = pygame.mixer.Sound('Sounds/Сбор.wav')
 get_sound.set_volume(0.5)
 jump_sound = pygame.mixer.Sound('Sounds/Прыжок.wav')
