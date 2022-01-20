@@ -8,6 +8,7 @@ class Arrow(pygame.sprite.Sprite):
 
     def __init__(self, group, screen):
         super().__init__(group)
+        self.ret_monst = False
         self.screen = screen
         self.monster_arrow_image = pygame.image.load('game_imgs\Monster_arrow.png')
         self.food_arrow_image = pygame.image.load('game_imgs\Food_arrow.png')
@@ -63,6 +64,7 @@ class Arrow(pygame.sprite.Sprite):
                 pygame.K_RETURN]:  # 1111111111111111111111111111111111111111111111111111111111111111111111111111
                 if self.monster_arrow_poz <= self.monster_card_quantity:
                     print('Monster card activated')  # вывод сообщения
+                    self.ret_monst = True
 
                     self.monster_card_quantity -= 1
                 else:
@@ -147,3 +149,12 @@ class Arrow(pygame.sprite.Sprite):
 
     def get_count_kris(self):
         return self.food_card_quantity
+
+    def get_is_ret_monst(self):
+        if self.ret_monst:
+            self.ret_monst = False
+            return True
+        return False
+
+    def get_activated_card(self):
+        return self.monster_arrow_poz
