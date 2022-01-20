@@ -53,10 +53,13 @@ class FirstMonster(pygame.sprite.Sprite):
         self.baf = 20  # урон от бафа от корма (если будет)
         self.sleeping_time = 20  # время спячки
 
-    def activated(self):
-        self.hitpoint = 100  # значение урона (по ходу продакешна может изменится)
-        self.new_image = 1  # создастся новое временное изображение на время анимации атаки
-        self.activated_card = True
+    # def activated(self):
+    #     self.hitpoint = 100  # значение урона (по ходу продакешна может изменится)
+    #     self.new_image = 1  # создастся новое временное изображение на время анимации атаки
+    #     self.activated_card = True
+
+    def get_num(self):
+        return 1
 
 
 class SecondMonster(pygame.sprite.Sprite):
@@ -72,6 +75,9 @@ class SecondMonster(pygame.sprite.Sprite):
         self.rect.x = 26 + 180 + 8
         self.rect.y = 620
 
+    def get_num(self):
+        return 2
+
 
 class ThirdMonster(pygame.sprite.Sprite):
     def __init__(self, group, screen, monster_name):
@@ -85,6 +91,9 @@ class ThirdMonster(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 26 + (180 + 8) * 2
         self.rect.y = 620
+
+    def get_num(self):
+        return 3
 
 
 class FourthMonster(pygame.sprite.Sprite):
@@ -100,6 +109,9 @@ class FourthMonster(pygame.sprite.Sprite):
         self.rect.x = 26 + (180 + 8) * 3
         self.rect.y = 620
 
+    def get_num(self):
+        return 4
+
 
 class FifthMonster(pygame.sprite.Sprite):
     def __init__(self, group, screen, monster_name):
@@ -113,6 +125,9 @@ class FifthMonster(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 26 + (180 + 8) * 4
         self.rect.y = 620
+
+    def get_num(self):
+        return 5
 
 
 class SixMonster(pygame.sprite.Sprite):
@@ -128,6 +143,10 @@ class SixMonster(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 26 + (180 + 8) * 5
         self.rect.y = 620
+
+
+    def get_num(self):
+        return 6
 
 
 class FirstKristall(pygame.sprite.Sprite):
