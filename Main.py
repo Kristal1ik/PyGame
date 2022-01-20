@@ -20,7 +20,7 @@ first_level_data = [
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'A', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.'],
     ['X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 1, '.', 'X', 'X', '.', '.', '.', 'X'],
     ['X', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.'],
-    ['.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'A', 'X', 'X'],
+    ['.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'A', 'X', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
     ['X', 'X', 'X', 'X', '.', '.', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
     ['.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X'],
@@ -37,12 +37,12 @@ second_level_data = [
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', 'X', 'X', 'X', '.', '.', 'X', 'X', '.', '.', '.', '.', 'X', 'X'],
     ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', 1, '.', '.', '.', '.'],
     ['.', '.', '.', '.', 1, '.', '.', '.', '.', '.', 'X', '.', '.''X', 'A', 'X', '.', '.', '.', 'X', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', 'A', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', '.', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', '.', '.'],
-    ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', 'X', 'X', '.', '.', 'A', 'X', 'X', 'X', '.'],
-    ['.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
-    ['X', 'X', 'X', 'X', 'X', 'X', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.', '.', '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', '/', '.', 1, '.', '.', '.', '.', '.', '.', '.', '.', 'X', 'X', 'X', 'X', 'X', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', 'X', '.', '.', 'X', 'X', '.', '.', 'X', 'X', '.', '.', 'A', 'X', 'X', 'X', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', 'X', 'X', '.', '.', '.', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['X', 'X', 'X', '.', '.', '.', '.', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.', '.', '.', '.', '.', '.', '.''X', 'X', 'X', 'X', 'X', '.', '.', '.'],
     ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '.']]
 
 third_level_data = [
@@ -80,6 +80,8 @@ if __name__ == '__main__':
 
     # создание основных объектов
     score = 0
+    back_ground_with_boss = pygame.image.load('game_imgs/Boss.jpg')
+    back_ground_with_boss1 = pygame.image.load('game_imgs/Boss1.jpg')
     image_start = pygame.image.load('game_imgs/Start.png')
     image_start = pygame.transform.scale(image_start, (484, 131))
     bg = pygame.image.load('game_imgs\Back.jpg')
@@ -104,9 +106,9 @@ if __name__ == '__main__':
     First_monster = FirstMonster(all_sprites, screen, Monsters_name_list[0])
     Second_monster = SecondMonster(all_sprites, screen, Monsters_name_list[1])
     Third_monster = ThirdMonster(all_sprites, screen, Monsters_name_list[2])
-    Fourth_Monster = None
-    Fifth_Monster = None
-    Six_Monster = None
+    Fourth_Monster = FourthMonster(all_sprites, screen, Monsters_name_list[3])
+    Fifth_Monster = FifthMonster(all_sprites, screen, Monsters_name_list[4])
+    Six_Monster = SixMonster(all_sprites, screen, Monsters_name_list[5])
 
     # ---------------создание первых четырех карточек ЕДЫ---------------
 
@@ -124,15 +126,25 @@ if __name__ == '__main__':
     can_update_arr = True
     now = 1
     last = 1
-
+    last_world = False
+    i = 0
+    last_count = 0
     while running:
+        i += 1
         clock.tick(fps)
         if menu:
             screen.blit(bg, (0, 0))
             if button.draw():
                 menu = False
         else:
-            screen.blit(back_ground, (0, 0))
+            if last_world:
+                if i % 40 == 0:
+                    bg = back_ground_with_boss1
+                elif i % 20 == 0:
+                    bg = back_ground_with_boss
+                screen.blit(bg, (0, 0))
+            else:
+                screen.blit(back_ground, (0, 0))
             if pygame.sprite.spritecollide(pers, kristall_group, True):
                 get_sound.play()
                 score += 1
@@ -145,8 +157,15 @@ if __name__ == '__main__':
                     Third_kris_card.plus_one()
                 elif Fourth_kris_card.get_count() < 4:
                     Fourth_kris_card.plus_one()
-                else:
-                    pass
+                last_count = First_kris_card.get_count()
+                arrow.food_card_quantity = First_kris_card.get_count()
+
+                now_score = arrow.get_count_kris()
+                print(now_score)
+
+
+            # вывести сообщение о переполненном инвентаре
+
             kristall_group.draw(screen)
             world.draw()
             table.draw()
@@ -175,6 +194,7 @@ if __name__ == '__main__':
                 new_tilelst = world.get_tilelst()
                 pers.change_tilelst(new_tilelst)
                 num_of_data = 3
+                last_world = True
                 pers.move_pers_back()
             elif pers_x <= 15 and num_of_data == 3:
                 main_data = second_level_data
@@ -182,6 +202,7 @@ if __name__ == '__main__':
                 new_tilelst = world.get_tilelst()
                 pers.change_tilelst(new_tilelst)
                 num_of_data = 2
+                last_world = False
                 pers.move_pers_foward()
             all_sprites.draw(screen)
             all_sprites.update()
@@ -197,7 +218,7 @@ if __name__ == '__main__':
             if now - last >= 200:
                 can_update_arr = True
             kristall_group.update()
-            print(now, last)
+            # print(now, last)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
