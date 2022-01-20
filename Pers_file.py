@@ -71,7 +71,6 @@ class Pers(pygame.sprite.Sprite):
 
         if args[pygame.K_d]:
             dx += 5
-
             # анимация
             self.side = 1
             self.nn += 1
@@ -83,7 +82,6 @@ class Pers(pygame.sprite.Sprite):
                 self.image = self.images[self.n]
         if args[pygame.K_a]:
             dx -= 5
-            # анимация
             self.side = -1
             self.nn += 1
             if self.nn > time:
@@ -122,7 +120,6 @@ class Pers(pygame.sprite.Sprite):
                     dy = i[1].top - self.rect.bottom
                     self.air = False
                     self.vy = 0
-        print(dx, dy)
         self.rect.x += dx
         self.rect.y += dy
 
@@ -142,13 +139,13 @@ class Pers(pygame.sprite.Sprite):
 
 
 def pause():
-    pause = True
-    while pause:
+    pause_ = True
+    while pause_:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pause = False
+                pause_ = False
         text.create()
         k = pygame.key.get_pressed()
         if k[pygame.K_RETURN]:
-            pause = False
+            pause_ = False
         pygame.display.update()

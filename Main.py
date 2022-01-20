@@ -147,8 +147,6 @@ if __name__ == '__main__':
                     Fourth_kris_card.plus_one()
                 else:
                     pass
-            # вывести сообщение о переполненном инвентаре
-
             kristall_group.draw(screen)
             world.draw()
             table.draw()

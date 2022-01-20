@@ -1,6 +1,7 @@
 import pygame
 from pygame import display
 
+
 class Text:
     def __init__(self, text, w, h):
         self.text = text
@@ -16,3 +17,4 @@ class Text:
         font = pygame.font.SysFont(self.font, self.size)
         text = font.render(self.text, True, self.color)
         self.screen.blit(text, (self.w // 2, self.h // 2))
+
