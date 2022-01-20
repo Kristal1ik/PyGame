@@ -17,14 +17,14 @@ class Arrow(pygame.sprite.Sprite):
         self.rect.y = 614
 
         self.monster_arrow_poz = 1  # позиция курсора при выборе монстрика
-        self.monster_card_quantity = 3  # количество карт монстриков (изначально - 3)
+        self.monster_card_quantity = 6  # количество карт монстриков (изначально - 3)
         self.max_monsters_quantity = 6  # максимальное количество карт монстриков
         self.monster_move_length = 188  # расстояние перемещения курсора при выборе монстрика
 
         self.food_arrow_poz = 1  # позиция курсора при выборе корма
         self.food_move_length_left = 204  # расстояние перемещения курсора в влево при выборе еды
         self.food_move_length_down = 84  # расстояние перемещения курсора в вниз при выборе еды
-        self.food_card_quantity = 2  # количество карт корма (изначально - 2)
+        self.food_card_quantity = 0  # количество карт корма (изначально - 0)
         self.max_food_quantity = 4  # максимальное количество карт корма
 
         self.caught_food = False  # Значение, отвечающее за взятую после нажатия еду
@@ -44,7 +44,6 @@ class Arrow(pygame.sprite.Sprite):
                     self.monster_arrow_poz -= 1
                     # print(self.arrow_poz)
 
-
             if args and args[pygame.K_RIGHT]:
                 if self.monster_arrow_poz < self.max_monsters_quantity:
                     self.rect.left += self.monster_move_length
@@ -60,7 +59,8 @@ class Arrow(pygame.sprite.Sprite):
                 self.arrow_poz = "Food"
                 self.food_arrow_poz = 1
 
-            if args and args[pygame.K_RETURN]:
+            if args and args[
+                pygame.K_RETURN]:  # 1111111111111111111111111111111111111111111111111111111111111111111111111111
                 if self.monster_arrow_poz <= self.monster_card_quantity:
                     print('Monster card activated')  # вывод сообщения
 
@@ -144,3 +144,6 @@ class Arrow(pygame.sprite.Sprite):
         if args and args[pygame.K_RETURN]:
             return 1
         return 0
+
+    def get_count_kris(self):
+        return self.food_card_quantity
